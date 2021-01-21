@@ -36,13 +36,13 @@ By default the values will concat with a colon. If you need a different separato
           concat: true
           # valueSeparator: ','
 
-Before Solr concat the values, a alphanumeric sort applied.
+Before Solr concatenates the values, they will be sorted in alphanumeric matter.
 
 Imaging following filter:
 
 	tx_solr[filter][0]=taste:sweet&tx_solr[filter][1]=taste:sour&tx_solr[filter][2]=taste:matcha
 
-By enable concat of multiple values, it would change into
+By enabling the `concat` of multiple values, it would change into:
 
 	tx_solr[filter][0]=taste:matcha,sour,sweet
 
@@ -78,7 +78,7 @@ Imaging following filter:
 
 	tx_solr[filter][0]=taste:sweet&tx_solr[filter][1]=taste:sour&tx_solr[filter][2]=taste:matcha
 
-By enable concat of multiple values, it would change into
+By enabling the `concat` of multiple values, it would change into:
 
 	taste=matcha,sour,sweet
 
