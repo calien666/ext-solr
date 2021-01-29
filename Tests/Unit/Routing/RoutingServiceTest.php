@@ -47,7 +47,7 @@ class RoutingServiceTest extends UnitTest
 
     /**
      * @test
-     * @covers \ApacheSolrForTypo3\Solr\Routing\RoutingService::getFacetValueSeparator
+     * @covers \ApacheSolrForTypo3\Solr\Routing\RoutingService::getDefaultMultiValueSeparator
      */
     public function defaultValueSeparatorIsAvailableTest()
     {
@@ -55,13 +55,13 @@ class RoutingServiceTest extends UnitTest
 
         $this->assertEquals(
             ',',
-            $routingService->getFacetValueSeparator()
+            $routingService->getDefaultMultiValueSeparator()
         );
     }
 
     /**
      * @test
-     * @covers \ApacheSolrForTypo3\Solr\Routing\RoutingService::getFacetValueSeparator
+     * @covers \ApacheSolrForTypo3\Solr\Routing\RoutingService::getDefaultMultiValueSeparator
      */
     public function canOverrideValueSeparatorTest()
     {
@@ -73,7 +73,7 @@ class RoutingServiceTest extends UnitTest
 
         $this->assertEquals(
             '+',
-            $routingService->getFacetValueSeparator()
+            $routingService->getDefaultMultiValueSeparator()
         );
     }
 
@@ -367,13 +367,13 @@ class RoutingServiceTest extends UnitTest
         $expectedResult = [
             'tx_solr' => [
                 'filter' => [
-                    'color:green',
-                    'color:red',
-                    'color:yellow',
-                    'taste:matcha',
-                    'taste:sour',
-                    'product:candy',
-                    'product:sweets',
+                    urlencode('color:green'),
+                    urlencode('color:red'),
+                    urlencode('color:yellow'),
+                    urlencode('taste:matcha'),
+                    urlencode('taste:sour'),
+                    urlencode('product:candy'),
+                    urlencode('product:sweets'),
                 ]
             ]
         ];
@@ -410,7 +410,7 @@ class RoutingServiceTest extends UnitTest
         $this->assertEquals(
             [
                 'tx_solr' => [
-                    'filter' => ['colorType:blue']
+                    'filter' => [urlencode('colorType:blue')]
                 ]
             ],
             $newRequest->getQueryParams()
@@ -441,7 +441,7 @@ class RoutingServiceTest extends UnitTest
         $this->assertEquals(
             [
                 'tx_solr' => [
-                    'filter' => ['colorType:blue','colorType:green']
+                    'filter' => [urlencode('colorType:blue'),urlencode('colorType:green')]
                 ]
             ],
             $newRequest->getQueryParams()
@@ -485,10 +485,10 @@ class RoutingServiceTest extends UnitTest
             [
                 'tx_solr' => [
                     'filter' => [
-                        'taste:sweet',
-                        'taste:sour',
-                        'colorType:blue',
-                        'colorType:green'
+                        urlencode('taste:sweet'),
+                        urlencode('taste:sour'),
+                        urlencode('colorType:blue'),
+                        urlencode('colorType:green')
                     ]
                 ]
             ],
